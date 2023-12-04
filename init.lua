@@ -133,6 +133,7 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  'vim-test/vim-test'
 }, {})
 
 vim.o.hlsearch = false
@@ -149,6 +150,8 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
+
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
@@ -324,6 +327,12 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
+
+  nmap('<leader>t', ':TestNearest<CR>')
+  nmap('<leader>T', ':TestFile<CR>')
+  nmap('<leader>a', ':TestSuite<CR>')
+  nmap('<leader>l', ':TestLast<CR>')
+  nmap('<leader>g', ':TestVisit<CR>')
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()

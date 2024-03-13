@@ -1,5 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.netrw_liststyle = 3
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -35,11 +36,7 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-
       'hrsh7th/cmp-nvim-lsp',
-
-      'rafamadriz/friendly-snippets',
     },
   },
 
@@ -236,8 +233,8 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'c', 'cpp', 'c_sharp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript',
-      'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'c_sharp', 'terraform', 'go', 'lua', 'python', 'rust', 'tsx', 'json', 'javascript', 'typescript',
+      'vimdoc', 'vim', 'bash', 'yaml' },
 
     auto_install = false,
 
@@ -386,7 +383,6 @@ mason_lspconfig.setup_handlers {
 
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
 cmp.setup {

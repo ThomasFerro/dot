@@ -236,7 +236,7 @@ vim.defer_fn(function()
     ensure_installed = { 'c', 'cpp', 'c_sharp', 'terraform', 'go', 'lua', 'python', 'rust', 'tsx', 'json', 'javascript', 'typescript',
       'vimdoc', 'vim', 'bash', 'yaml' },
 
-    auto_install = false,
+    auto_install = true,
 
     highlight = { enable = true },
     indent = { enable = true },

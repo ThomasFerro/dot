@@ -1,83 +1,121 @@
+local nmap = require('remap').nmap
+local lsp_nmap = function(keys, func, desc, buffer)
+  if desc then
+    desc = 'LSP: ' .. desc
+  end
+  nmap(keys, func, desc, buffer)
+end
+
 return {
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'williamboman/mason.nvim',
+      { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
-      -- TODO: Si je garde ces plugins pour LSP, remplacer par lazydev.nvim
-      'folke/neodev.nvim',
+      'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      local nmap = require('remap').nmap
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+        callback = function(event)
+          lsp_nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition', event.buf)
+          lsp_nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences', event.buf)
+          lsp_nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation', event.buf)
+          lsp_nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition', event.buf)
+          lsp_nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols', event.buf)
+          lsp_nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols',
+            event.buf)
+          lsp_nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame', event.buf)
+          lsp_nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', event.buf)
+          lsp_nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration', event.buf)
 
-      local on_lsp_attach = function(_, bufnr)
-        local lsp_nmap = function(keys, func, desc)
-          if desc then
-            desc = 'LSP: ' .. desc
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.document_highlight,
+            })
+
+            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+              buffer = event.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.clear_references,
+            })
+
+            vim.api.nvim_create_autocmd('LspDetach', {
+              group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+              callback = function(event2)
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+              end,
+            })
           end
-          nmap(keys, func, desc, bufnr)
-        end
 
-        lsp_nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-        lsp_nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-        lsp_nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        lsp_nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-        lsp_nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-        lsp_nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-        lsp_nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-        lsp_nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
+            vim.lsp.buf.format()
+          end, { desc = 'Format current buffer with LSP' })
+          lsp_nmap('<leader>cf', ':Format<cr>', '[F]ormat current buffer with LSP', event.buf)
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            lsp_nmap('<leader>th', function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+            end, '[T]oggle Inlay [H]ints', event.buf)
+          end
+        end,
+      })
 
-        lsp_nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-        lsp_nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-        lsp_nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-        lsp_nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-        lsp_nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-        lsp_nmap('<leader>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, '[W]orkspace [L]ist Folders')
-
-        vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-          vim.lsp.buf.format()
-        end, { desc = 'Format current buffer with LSP' })
-        lsp_nmap('<leader>cf', ':Format<cr>', '[F]ormat current buffer with LSP')
-      end
-
-      require('mason').setup()
-      require('mason-lspconfig').setup()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
+        bashls = {},
+        gopls = {},
+        tsserver = {},
         lua_ls = {
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = 'Replace',
+              },
+              diagnostics = { disable = { 'missing-fields' } },
+            },
           },
         },
       }
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      require('mason').setup()
 
-      local mason_lspconfig = require 'mason-lspconfig'
+      local ensure_installed = vim.tbl_keys(servers or {})
+      vim.list_extend(ensure_installed, {
+        'stylua',
+      })
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(servers),
+      require('mason-lspconfig').setup {
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+          end,
+        },
       }
-
-      mason_lspconfig.setup_handlers {
-        function(server_name)
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_lsp_attach,
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-          }
-        end,
-      }
-    end
+    end,
   },
 }

@@ -11,7 +11,7 @@ return {
       'folke/neodev.nvim',
     },
     config = function()
-      local nmap = require('helpers.remap').nmap
+      local nmap = require('remap').nmap
 
       local on_lsp_attach = function(_, bufnr)
         local lsp_nmap = function(keys, func, desc)

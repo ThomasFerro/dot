@@ -24,8 +24,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- TODO: Dans key-mappings.lua ?
-local nmap = require('helpers.remap').nmap
+local nmap = require('remap').nmap
 nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
 nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')
 nmap('<leader>e', vim.diagnostic.open_float, 'Open floating diagnostic message')

@@ -18,6 +18,7 @@ require('lazy').setup({
   require 'completion',
   require 'key-mappings',
   require 'comments',
+  require 'string-manipulation',
   require 'finder',
   require 'parsing',
   require 'lsp',

@@ -1,4 +1,4 @@
-local nmap = require('helpers.remap').nmap
+local nmap = require('remap').nmap
 
 return {
   'tpope/vim-fugitive',

@@ -4,10 +4,10 @@ return {
   'vim-test/vim-test',
   commit = '0f50a54',
   config = function()
-    nmap('<leader>t', ':TestNearest<CR>')
-    nmap('<leader>T', ':TestFile<CR>')
-    nmap('<leader>a', ':TestSuite<CR>')
-    nmap('<leader>l', ':TestLast<CR>')
-    nmap('<leader>g', ':TestVisit<CR>')
+    nmap('<leader>Tt', ':TestNearest<CR>')
+    nmap('<leader>TT', ':TestFile<CR>')
+    nmap('<leader>Ta', ':TestSuite<CR>')
+    nmap('<leader>Tl', ':TestLast<CR>')
+    nmap('<leader>Tg', ':TestVisit<CR>')
   end
 }

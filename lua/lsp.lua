@@ -9,6 +9,7 @@ end
 return {
   {
     'folke/lazydev.nvim',
+    commit = '2367a6c',
     ft = 'lua',
     opts = {
       library = {
@@ -19,14 +20,15 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
+    commit = '8a1529e',
     dependencies = {
-      { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      { 'williamboman/mason.nvim',                   tag = 'v1.11.0',    config = true },
+      { 'williamboman/mason-lspconfig.nvim',         tag = 'v1.32.0' },
+      { 'WhoIsSethDaniel/mason-tool-installer.nvim', commit = '5639d58' },
 
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim',                         commit = 'd9ba6b7', opts = {} },
 
-      'hrsh7th/cmp-nvim-lsp',
+      { 'hrsh7th/cmp-nvim-lsp',                      commit = '99290b3' },
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {

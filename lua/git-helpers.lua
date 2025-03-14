@@ -1,10 +1,14 @@
 local nmap = require('remap').nmap
 
 return {
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    commit = '4a745ea'
+  },
 
   {
     'lewis6991/gitsigns.nvim',
+    commit = '011dc67',
     opts = {
       signs = {
         add = { text = '+' },

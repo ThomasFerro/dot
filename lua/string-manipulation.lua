@@ -1,3 +1,6 @@
 return {
-  'arthurxavierx/vim-caser'
+  {
+    'arthurxavierx/vim-caser',
+    commit = '6bc9f41'
+  }
 }

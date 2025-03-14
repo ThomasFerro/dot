@@ -1,9 +1,16 @@
 return {
   {
     'hrsh7th/nvim-cmp',
+    commit = '1e1900b',
     dependencies = {
-      'L3MON4D3/LuaSnip',
-      'hrsh7th/cmp-nvim-lsp',
+      {
+        'L3MON4D3/LuaSnip',
+        commit = 'c9b9a22',
+      },
+      {
+        'hrsh7th/cmp-nvim-lsp',
+        commit = '99290b3',
+      }
     },
     config = function()
       local cmp = require 'cmp'

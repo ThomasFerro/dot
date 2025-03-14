@@ -1,6 +1,7 @@
 return {
   {
     'folke/which-key.nvim',
+    tag = 'v3.17.0',
     opts = {},
     config = function()
       require('which-key').add {

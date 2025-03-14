@@ -4,8 +4,9 @@ if not vim.loop.fs_stat(lazypath) then
     'git',
     'clone',
     '--filter=blob:none',
+    '--depth=1',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable',
+    '--branch=v11.17.1',
     lazypath,
   }
 end
@@ -23,5 +24,8 @@ require('lazy').setup({
   require 'parsing',
   require 'lsp',
 
-  'tpope/vim-sleuth', 
+  {
+    'tpope/vim-sleuth',
+    commit = 'be69bff'
+  }
 }, {})

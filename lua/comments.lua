@@ -1,3 +1,7 @@
 return {
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    commit = 'e30b7f2',
+    opts = {}
+  },
 }

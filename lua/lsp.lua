@@ -67,8 +67,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 return {
   {
-    'williamboman/mason.nvim',
-    tag = 'v1.11.0',
+    'mason-org/mason.nvim',
+    tag = 'v2.0.0',
     config = function()
       require("mason").setup()
     end

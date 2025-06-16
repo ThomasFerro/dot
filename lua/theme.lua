@@ -12,7 +12,7 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
-    commit = '02d61f5',
+    commit = 'a94fc68',
     opts = {
       options = {
         icons_enabled = false,
@@ -20,6 +20,14 @@ return {
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'filetype', 'lsp_status' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
+      }
     },
   },
 }

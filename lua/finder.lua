@@ -7,7 +7,7 @@ return {
     dependencies = {
       {
         'nvim-lua/plenary.nvim',
-        commit = '857c5ac',
+        commit = 'b9fd522',
       },
       {
         'nvim-telescope/telescope-fzf-native.nvim',

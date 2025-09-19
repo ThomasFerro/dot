@@ -1,7 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    commit = 'c3ecec5',
+    commit = '8ab64a3',
     lazy = false,
     build = ':TSUpdate',
     opts = {

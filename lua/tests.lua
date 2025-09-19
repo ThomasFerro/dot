@@ -2,7 +2,7 @@ local nmap = (require "remap").nmap
 
 return {
   'vim-test/vim-test',
-  commit = 'fba18e1',
+  commit = '5ee3c0b',
   config = function()
     nmap('<leader>Tt', ':TestNearest<CR>')
     nmap('<leader>TT', ':TestFile<CR>')

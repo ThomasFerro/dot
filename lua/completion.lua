@@ -1,7 +1,7 @@
 return {
   {
     'saghen/blink.cmp',
-    tag = 'v1.4.1',
+    tag = 'v1.7.0',
     opts = {
       keymap = { preset = 'enter' },
       completion = { documentation = { auto_show = true } },

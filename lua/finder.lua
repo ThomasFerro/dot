@@ -3,7 +3,7 @@ local nmap = require('remap').nmap
 return {
   {
     'nvim-telescope/telescope.nvim',
-    commit = 'b4da76be54691e854d3e0e02c36b0245f945c2c7',
+    commit = '0294ae3eafe662c438addb8692d9c98ef73a983e',
     dependencies = {
       {
         'nvim-lua/plenary.nvim',
@@ -11,7 +11,7 @@ return {
       },
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        commit = '1f08ed6',
+        commit = '6fea601bd2b694c6f2ae08a6c6fab14930c60e2c',
         build = 'make',
         cond = function()
           return vim.fn.executable 'make' == 1

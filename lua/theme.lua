@@ -1,7 +1,7 @@
 return {
   {
     'bluz71/vim-moonfly-colors',
-    commit = '2a3cade',
+    commit = 'ef85b89739bee184e204c89bc06280d62bd84039',
     name = "moonfly",
     lazy = false,
     priority = 1000,
@@ -12,7 +12,7 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
-    commit = 'b8c2315',
+    commit = '3946f0122255bc377d14a59b27b609fb3ab25768',
     opts = {
       options = {
         icons_enabled = false,

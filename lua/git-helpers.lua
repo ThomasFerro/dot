@@ -8,7 +8,7 @@ return {
 
   {
     'lewis6991/gitsigns.nvim',
-    commit = '20ad4419564d6e22b189f6738116b38871082332',
+    commit = 'c21acb929a29027e6edb123b931cdd290c675c09',
     opts = {
       signs = {
         add = { text = '+' },
@@ -17,6 +17,14 @@ return {
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      signs_staged = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+      signs_staged_enable = true,
       on_attach = function(bufnr)
         nmap('<leader>hp', require('gitsigns').preview_hunk, 'Preview git hunk', bufnr)
 

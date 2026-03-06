@@ -3,7 +3,7 @@ local nmap = require('remap').nmap
 return {
   {
     'nvim-telescope/telescope.nvim',
-    commit = '0294ae3eafe662c438addb8692d9c98ef73a983e',
+    commit = '5255aa27c422de944791318024167ad5d40aad20',
     dependencies = {
       {
         'nvim-lua/plenary.nvim',
@@ -21,16 +21,7 @@ return {
     config = function()
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      require('telescope').setup {
-        defaults = {
-          mappings = {
-            i = {
-              ['<C-u>'] = false,
-              ['<C-d>'] = false,
-            },
-          },
-        },
-      }
+      require('telescope').setup()
 
       pcall(require('telescope').load_extension, 'fzf')
 

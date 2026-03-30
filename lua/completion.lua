@@ -1,17 +1,17 @@
-return {
+vim.pack.add({
   {
-    'saghen/blink.cmp',
-    tag = 'v1.9.1',
-    opts = {
-      keymap = { preset = 'enter' },
-      completion = { documentation = { auto_show = true } },
+    src = 'https://github.com/saghen/blink.cmp',
+    version = 'v1.9.1',
+  }
+})
 
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-      },
+require('blink.cmp').setup({
+  keymap = { preset = 'enter' },
+  completion = { documentation = { auto_show = true } },
 
-      fuzzy = { implementation = "prefer_rust_with_warning" }
-    },
-    opts_extend = { "sources.default" }
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
   },
-}
+
+  fuzzy = { implementation = "prefer_rust_with_warning" }
+})

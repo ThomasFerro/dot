@@ -1,6 +1,6 @@
-return {
+vim.pack.add({
   {
-    'arthurxavierx/vim-caser',
-    commit = '6bc9f41'
+    src = 'https://github.com/arthurxavierx/vim-caser',
+    version = '6bc9f41'
   }
-}
+})

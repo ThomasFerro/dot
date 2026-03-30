@@ -1,7 +1,6 @@
-return {
+vim.pack.add({
   {
-    'numToStr/Comment.nvim',
-    commit = 'e30b7f2',
-    opts = {}
+    src = 'https://github.com/numToStr/Comment.nvim',
+    version = 'e30b7f2',
   },
-}
+})

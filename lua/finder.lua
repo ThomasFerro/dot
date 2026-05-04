@@ -11,11 +11,11 @@ vim.api.nvim_create_autocmd('PackChanged', { callback = makeFzfNative })
 vim.pack.add({
   {
     src = 'https://github.com/nvim-lua/plenary.nvim',
-    version = 'b9fd522',
+    version = '74b06c6c75e4eeb3108ec01852001636d85a932b',
   },
   {
     src = 'https://github.com/nvim-telescope/telescope.nvim',
-    version = '5255aa27c422de944791318024167ad5d40aad20'
+    version = '506338434fec5ad19cb1f8d45bf92d66c4917393'
   },
   {
     src = 'https://github.com/nvim-telescope/telescope-fzf-native.nvim',

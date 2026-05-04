@@ -3,12 +3,12 @@ local nmap = require('remap').nmap
 vim.pack.add({
   {
     src = 'https://github.com/tpope/vim-fugitive',
-    version = '61b51c0'
+    version = '3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0'
   },
 
   {
     src = 'https://github.com/lewis6991/gitsigns.nvim',
-    version = 'c21acb929a29027e6edb123b931cdd290c675c09',
+    version = '6d808f99bd63303646794406e270bd553ad7792e',
   },
 })
 

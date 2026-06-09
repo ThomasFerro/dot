@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd('PackChanged', { callback = updateAfterInstallOrUpda
 vim.pack.add({
   {
     src = 'https://github.com/nvim-treesitter/nvim-treesitter',
-    version = '1970f0d3bbb99c7659e58914948749437c7b7398',
+    version = '4916d6592ede8c07973490d9322f187e07dfefac',
   }
 })
 

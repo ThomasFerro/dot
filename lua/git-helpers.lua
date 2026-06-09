@@ -8,7 +8,7 @@ vim.pack.add({
 
   {
     src = 'https://github.com/lewis6991/gitsigns.nvim',
-    version = '6d808f99bd63303646794406e270bd553ad7792e',
+    version = '25050e4ed39e628282831d4cbecb1850454ce915',
   },
 })
 

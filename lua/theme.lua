@@ -1,7 +1,7 @@
 vim.pack.add({
   {
     src = 'https://github.com/nvim-lualine/lualine.nvim',
-    version = '131a558e13f9f28b15cd235557150ccb23f89286',
+    version = '221ce6b2d999187044529f49da6554a92f740a96',
   }
 })
 

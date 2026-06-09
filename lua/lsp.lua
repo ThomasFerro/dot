@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.pack.add({
   {
     src = 'https://github.com/mason-org/mason.nvim',
-    version = 'v2.2.1',
+    version = '16ba83bfc8a25f52bb545134f5bee082b195c460',
   },
 })
 

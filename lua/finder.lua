@@ -15,11 +15,11 @@ vim.pack.add({
   },
   {
     src = 'https://github.com/nvim-telescope/telescope.nvim',
-    version = '506338434fec5ad19cb1f8d45bf92d66c4917393'
+    version = '7d324792b7943e4aa16ad007212e6acc6f9fe335'
   },
   {
     src = 'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
-    version = '6fea601bd2b694c6f2ae08a6c6fab14930c60e2c'
+    version = 'b25b749b9db64d375d782094e2b9dce53ad53a40'
   }
 })
 

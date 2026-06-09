@@ -3,7 +3,7 @@ local nmap = (require "remap").nmap
 vim.pack.add({
   {
     src = 'https://github.com/vim-test/vim-test',
-    version = 'bc0e94059de40641d163516a83c63bc45c716acf'
+    version = '2676d84c6901e484df00b5d728bd6a345d47ee12'
   }
 })
 nmap('<leader>Tt', ':TestNearest<CR>')

@@ -36,6 +36,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     lsp_nmap('<leader>cd', vim.diagnostic.setqflist, '[C]ode [D]iagnostic', event.buf)
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    vim.lsp.completion.enable(true, client.id, event.buf, {
+      autotrigger = true,
+    })
+    vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, { desc = "trigger autocompletion" })
+
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
       local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {

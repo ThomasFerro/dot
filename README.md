@@ -20,7 +20,6 @@ git clone https://github.com/ThomasFerro/dot.git $env:USERPROFILE\AppData\Local\
 
 My dependencies management is still very manual, checking each of these projects and update the version and usage if needed.
 
-- <https://github.com/Saghen/blink.cmp>
 - <https://github.com/numToStr/Comment.nvim>
 - <https://github.com/lewis6991/gitsigns.nvim>
 - <https://github.com/nvim-lualine/lualine.nvim>

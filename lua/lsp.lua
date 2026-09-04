@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     lsp_nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation', event.buf)
     lsp_nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame', event.buf)
     lsp_nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', event.buf)
+    lsp_nmap('<leader>cd', vim.diagnostic.setqflist, '[C]ode [D]iagnostic', event.buf)
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
